@@ -16,12 +16,13 @@ export const goodsFromServer = [
 ];
 
 export enum SortField {
+  None = 'none',
   Alphabetical = 'alphabetical',
   Length = 'length',
 }
 
 export const App = () => {
-  const [sortField, setSortField] = useState('');
+  const [sortField, setSortField] = useState(SortField.None);
   const [reverse, setReverse] = useState(false);
   let visibleGoods = [...goodsFromServer];
 
@@ -40,10 +41,10 @@ export const App = () => {
   const alphaLight = sortField !== SortField.Alphabetical ? 'is-light' : '';
   const lengthLight = sortField !== SortField.Length ? 'is-light' : '';
   const reverseLight = !reverse ? 'is-light' : '';
-  const resetVisible = sortField !== '' || reverse;
+  const resetVisible = sortField !== SortField.None || reverse;
 
   const clearAll = () => {
-    setSortField('');
+    setSortField(SortField.None);
     setReverse(false);
   };
 
